@@ -1,5 +1,5 @@
 //GAS WebアプリのURL
-const END_POINT = ""
+const END_POINT = "https://script.google.com/macros/s/AKfycbwNPkPwbwIjcEk8iSMPhwuXZF-ACpsZrLG12wCyBVJKBVG5vKm3lDOriE0ZN8u8PAzO/exec"
 //読み書きするスプレッドシートの指定
 const sheetNAME = "踏み台シート"
 document.getElementById("kousinButton").addEventListener("click", getCharaMemoToGAS, false)
@@ -165,7 +165,6 @@ function getCharaMemoToGAS() {
         memo_element.appendChild(new_element)
       })
       //背景画像を変更
-      //const haikeiURL = "https://www.smashbros.com/assets_v2/img/fighter/" + charalist_dic[selectedName] + "/ss_1.jpg";
       const haikeiURL = "https://www.smashbros.com/assets_v2/img/fighter/" + charalist_dic[selectedName] + "/main.png"
       haikeiDIV.style.backgroundImage = "url(" + haikeiURL + ")"
       console.log("haikeiURL:" + haikeiURL)
