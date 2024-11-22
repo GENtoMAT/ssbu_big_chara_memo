@@ -1,9 +1,8 @@
 # スマブラ対戦相手情報メモビューワー（ビッグキャラメモ）
 
 趣味のスマブラを円滑に進めるために作った個人に使ってるツールです。対戦キャラ情報の専用ビューワーです。
-![demo-ezgif com-speed](https://github.com/user-attachments/assets/23279e74-dd48-4f72-9c14-c046d60b4f38)
 
-
+![demo_fianl](https://github.com/user-attachments/assets/15af9d85-0dd7-46c2-8ec8-906f44f1d242)
 
 ## URL
 
