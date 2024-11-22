@@ -6,7 +6,7 @@
 
 ## URL
 
-サンプルのスプレッドシート：https://docs.google.com/spreadsheets/d/1kXC69iJcnXRIGztN-J63S4nQkWLLac4Wv1J1xDU0Vv4/edit?usp=sharing
+サンプルのスプレッドシート：https://docs.google.com/spreadsheets/d/1sIsZ_p2TX8NDjCeEsz0YY3Q0WeWnOeQgvKQKUZHIrng/edit?usp=sharing
 
 デモサイト：https://gentomat.github.io/ssbu_big_chara_memo/
 
