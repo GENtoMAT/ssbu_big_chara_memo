@@ -1,6 +1,7 @@
 //GAS WebアプリのURL
-const END_POINT = "https://script.google.com/macros/s/AKfycbwNPkPwbwIjcEk8iSMPhwuXZF-ACpsZrLG12wCyBVJKBVG5vKm3lDOriE0ZN8u8PAzO/exec"
+//const END_POINT = "https://script.google.com/macros/s/AKfycbz0FCEua7fenWcKybaxtcWQfxHK-BK_jcbtYi1YYkStDIl_7IvPPzjxJwSpdfXDa9uc/exec" //sample_spreadsheet_GAS
 //読み書きするスプレッドシートの指定
+const PASS = "hpghifdghperht094u9r23geuhpoi12rr9pfheph"
 const sheetNAME = "踏み台シート"
 document.getElementById("kousinButton").addEventListener("click", getCharaMemoToGAS, false)
 //selectにキャラ名をセット
@@ -150,10 +151,11 @@ function getCharaMemoToGAS() {
   $.ajax({
     type: "GET",
     url: END_POINT,
-    data: { data: selectedName, sheetNAME: sheetNAME },
+    data: { data: selectedName, pass: PASS, sheetNAME: sheetNAME },
   })
     .done((result) => {
       // 成功した時の処理
+      console.log("ajax success")
       let dataObj = JSON.parse(result)
       let memo_element = document.getElementById("memo")
       //２次元配列を１次元に変換
@@ -165,6 +167,7 @@ function getCharaMemoToGAS() {
         memo_element.appendChild(new_element)
       })
       //背景画像を変更
+      //const haikeiURL = "https://www.smashbros.com/assets_v2/img/fighter/" + charalist_dic[selectedName] + "/ss_1.jpg";
       const haikeiURL = "https://www.smashbros.com/assets_v2/img/fighter/" + charalist_dic[selectedName] + "/main.png"
       haikeiDIV.style.backgroundImage = "url(" + haikeiURL + ")"
       console.log("haikeiURL:" + haikeiURL)
@@ -176,9 +179,14 @@ function getCharaMemoToGAS() {
 
       console.log("get done:" + result)
     })
-    .fail((error) => {
-      //失敗した時の処理
-      alert("Error:" + JSON.stringify(error))
+    .fail(function (jqXHR, textStatus, errorThrown) {
+      // 通信失敗時の処理
+      alert("ファイルの取得に失敗しました。")
+      console.log("ajax通信に失敗しました")
+      console.log("jqXHR          : " + jqXHR.status) // HTTPステータスが取得
+      console.log("textStatus     : " + textStatus) // タイムアウト、パースエラー
+      console.log("errorThrown    : " + errorThrown.message) // 例外情報
+      console.log("URL            : " + END_POINT)
     })
     .always((data) => {
       //常にやる処理
