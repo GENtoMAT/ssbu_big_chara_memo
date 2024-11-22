@@ -37,4 +37,5 @@ https://gentomat.github.io/ssbu_big_chara_memo/
 ## 関連情報
 
 大乱闘スマッシュブラザーズSPECIAL：https://www.smashbros.com/ja_JP/
+
 崖掴まり姿勢ランキングの表：https://hyperts.net/smashsp/ledge-rank/
