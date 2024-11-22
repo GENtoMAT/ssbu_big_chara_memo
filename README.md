@@ -1,6 +1,8 @@
 # スマブラ対戦相手情報メモビューワー（ビッグキャラメモ）
 
 趣味のスマブラを円滑に進めるために作った個人に使ってるツールです。対戦キャラ情報の専用ビューワーです。
+![demo](https://github.com/user-attachments/assets/af2d2eeb-8fba-4c24-b534-ece9fe735765)
+
 
 ## URL
 
@@ -14,6 +16,7 @@ https://gentomat.github.io/ssbu_big_chara_memo/
 
 **バックエンド** 
 
+- Javascript
 - GAS
 - Google spreadsheet（DBとして使用）
   
