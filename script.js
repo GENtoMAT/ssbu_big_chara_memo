@@ -1,7 +1,6 @@
 //GAS WebアプリのURL
 //const END_POINT = "https://script.google.com/macros/s/AKfycbz0FCEua7fenWcKybaxtcWQfxHK-BK_jcbtYi1YYkStDIl_7IvPPzjxJwSpdfXDa9uc/exec" //sample_spreadsheet_GAS
 //読み書きするスプレッドシートの指定
-const PASS = "hpghifdghperht094u9r23geuhpoi12rr9pfheph"
 const sheetNAME = "踏み台シート"
 document.getElementById("kousinButton").addEventListener("click", getCharaMemoToGAS, false)
 //selectにキャラ名をセット
