@@ -1,8 +1,7 @@
 //GAS WebアプリのURL
 const END_POINT = ""
 //読み書きするスプレッドシートの指定
-const PASS = "hpghifdghperht094u9r23geuhpoi12rr9pfheph"
-const sheetNAME = "右シート"
+const sheetNAME = "踏み台シート"
 document.getElementById("kousinButton").addEventListener("click", getCharaMemoToGAS, false)
 //selectにキャラ名をセット
 console.log("select chara set")
