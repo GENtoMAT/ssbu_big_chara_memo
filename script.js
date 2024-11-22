@@ -150,7 +150,7 @@ function getCharaMemoToGAS() {
   $.ajax({
     type: "GET",
     url: END_POINT,
-    data: { data: selectedName, pass: PASS, sheetNAME: sheetNAME },
+    data: { data: selectedName, sheetNAME: sheetNAME },
   })
     .done((result) => {
       // 成功した時の処理
