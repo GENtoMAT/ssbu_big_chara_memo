@@ -86,7 +86,7 @@
         <!-- メインのメモ -->
         <div id="memo" style="white-space: pre-line"></div>
         <!-- メモ共通部分 -->
-        <div id="kyotu" style="">
+        <div id="kyotu">
           <p style="text-align: center">↓↓↓メモ共通部分↓↓↓</p>
           <p>●崖捕まりランキング</p>
           <img src="https://i.imgur.com/CCCc7u4.png" width="100%" alt="" />
@@ -98,10 +98,20 @@
       </div>
       <!-- waku2 -->
     </div>
-    <script type="text/javascript" src="script.js"></script>
+    <script type="text/javascript" src="test.js"></script>
+    <!-- <script>
+      document.getElementById("kousinButton").addEventListener("click", testFetch, false)
+
+      function testFetch() {
+        fetch("text.txt")
+          .then((data) => data.text())
+          .then((res) => console.log(res))
+      }
+    </script> -->
+
     <!-- <script>
       //GAS WebアプリのURL
-      //const END_POINT = "https://script.google.com/macros/s/AKfycbz0FCEua7fenWcKybaxtcWQfxHK-BK_jcbtYi1YYkStDIl_7IvPPzjxJwSpdfXDa9uc/exec" //sample_spreadsheet_GAS
+      const END_POINT = "https://script.google.com/macros/s/AKfycbynkkPB9flNyDe3D1R7vYpvUFpFeWCLg-kkZggIHw02N-pzVNBXdIRRbPchUvpv-EhT/exec" //sample_spreadsheet_GAS
       //読み書きするスプレッドシートの指定
       const PASS = "hpghifdghperht094u9r23geuhpoi12rr9pfheph"
       const sheetNAME = "右シート"

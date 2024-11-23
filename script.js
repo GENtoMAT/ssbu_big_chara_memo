@@ -1,5 +1,6 @@
 //GAS WebアプリのURL
-//const END_POINT = "https://script.google.com/macros/s/AKfycbz0FCEua7fenWcKybaxtcWQfxHK-BK_jcbtYi1YYkStDIl_7IvPPzjxJwSpdfXDa9uc/exec" //sample_spreadsheet_GAS
+//const END_POINT = "https://script.google.com/macros/s/AKfycbynkkPB9flNyDe3D1R7vYpvUFpFeWCLg-kkZggIHw02N-pzVNBXdIRRbPchUvpv-EhT/exec" //sample_spreadsheet_GAS
+const END_POINT = "https://script.google.com/macros/s/AKfycbwLe8Fjc2N803r1j9rwfbMRMVkHn-2YP76geWawVPReNeSIvKBom1Mq8Gsn2Q6YiYPa-Q/exec" //honban
 //読み書きするスプレッドシートの指定
 const sheetNAME = "踏み台シート"
 document.getElementById("kousinButton").addEventListener("click", getCharaMemoToGAS, false)
@@ -99,7 +100,7 @@ const charalist_dic = {
 }
 //辞書の英語名は背景画像を引っ張ってくる時に使用。ヒカリはpyraで合ってる。
 const charalist_keyarr = Object.keys(charalist_dic) //辞書を配列化
-console.log(charalist_keyarr)
+//console.log(charalist_keyarr)
 charalist_keyarr.map((value) => {
   const option = document.createElement("option")
   option.value = value
@@ -150,7 +151,7 @@ function getCharaMemoToGAS() {
   $.ajax({
     type: "GET",
     url: END_POINT,
-    data: { data: selectedName, pass: PASS, sheetNAME: sheetNAME },
+    data: { data: selectedName, sheetNAME: sheetNAME },
   })
     .done((result) => {
       // 成功した時の処理
