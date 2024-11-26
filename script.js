@@ -1,7 +1,10 @@
+// axiosをインポートする
+//import axios from "axios"
 //GAS WebアプリのURL
-//const END_POINT = "https://script.google.com/macros/s/AKfycbz0FCEua7fenWcKybaxtcWQfxHK-BK_jcbtYi1YYkStDIl_7IvPPzjxJwSpdfXDa9uc/exec" //sample_spreadsheet_GAS
+const END_POINT = "https://script.google.com/macros/s/AKfycbynkkPB9flNyDe3D1R7vYpvUFpFeWCLg-kkZggIHw02N-pzVNBXdIRRbPchUvpv-EhT/exec" //sample_spreadsheet_GAS
+//const END_POINT = "https://script.google.com/macros/s/AKfycbwLe8Fjc2N803r1j9rwfbMRMVkHn-2YP76geWawVPReNeSIvKBom1Mq8Gsn2Q6YiYPa-Q/exec" //honban
 //読み書きするスプレッドシートの指定
-const sheetNAME = "踏み台シート"
+const param_sheetNAME = "踏み台シート"
 document.getElementById("kousinButton").addEventListener("click", getCharaMemoToGAS, false)
 //selectにキャラ名をセット
 console.log("select chara set")
@@ -99,7 +102,7 @@ const charalist_dic = {
 }
 //辞書の英語名は背景画像を引っ張ってくる時に使用。ヒカリはpyraで合ってる。
 const charalist_keyarr = Object.keys(charalist_dic) //辞書を配列化
-console.log(charalist_keyarr)
+//console.log(charalist_keyarr)
 charalist_keyarr.map((value) => {
   const option = document.createElement("option")
   option.value = value
@@ -135,61 +138,60 @@ function getCharaMemoToGAS() {
   const loader = document.getElementById("loading")
   loader.classList.remove("loaded")
   //メモデータの取得、表示
-  let memo_element = document.getElementById("memo")
+  const memo_element = document.getElementById("memo")
   //メモをクリア
   if (memo_element.hasChildNodes()) {
     memo_element.innerHTML = ""
     console.log("memo clear")
   }
   //スプレッドシートにアクセス
-  console.log("url: " + END_POINT)
   const num = document.getElementById("chara-select").selectedIndex
-  console.log("num:" + num)
   const selectedName = document.getElementById("chara-select").options[num].value
-  console.log("selected:" + selectedName)
-  $.ajax({
-    type: "GET",
-    url: END_POINT,
-    data: { data: selectedName, pass: PASS, sheetNAME: sheetNAME },
-  })
-    .done((result) => {
-      // 成功した時の処理
-      console.log("ajax success")
-      let dataObj = JSON.parse(result)
-      let memo_element = document.getElementById("memo")
-      //２次元配列を１次元に変換
-      new_res = dataObj.flat()
-      //メモ要素最後尾にnew_resを追加
-      new_res.map((value) => {
-        let new_element = document.createElement("p")
-        new_element.textContent = value
-        memo_element.appendChild(new_element)
+  // console.log("url: " + END_POINT)
+  // console.log("num:" + num)
+  // console.log("selected:" + selectedName)
+
+  //axiosでGetメソッドHTTPアクセス
+  // const url = "https://qiita.com/api/v2/items"
+
+  async function accessAsync() {
+    try {
+      const res = await axios.get(END_POINT, {
+        params: {
+          data: selectedName,
+          sheetNAME: param_sheetNAME,
+          // crossDomain: true,
+        },
       })
+      // 成功した時の処理
+      const items = res.data.flat() //２次元配列の行列になっているで１次元に変換
+      console.log("async success")
+      console.log(items)
+      const memo_element = document.getElementById("memo")
+      //取得データをメモに追加
+      for (const item of items) {
+        const new_element = document.createElement("p")
+        new_element.textContent = item
+        memo_element.appendChild(new_element)
+      }
       //背景画像を変更
       //const haikeiURL = "https://www.smashbros.com/assets_v2/img/fighter/" + charalist_dic[selectedName] + "/ss_1.jpg";
       const haikeiURL = "https://www.smashbros.com/assets_v2/img/fighter/" + charalist_dic[selectedName] + "/main.png"
       haikeiDIV.style.backgroundImage = "url(" + haikeiURL + ")"
+      //haikeiDIV.style.backgroundColor = "green"
       console.log("haikeiURL:" + haikeiURL)
+      console.log("url(" + haikeiURL + ")")
       //waku2のHeightを取得して下層に反映
-      let waku2_h = document.getElementById("waku2").clientHeight
+      const waku2_h = document.getElementById("waku2").clientHeight
       console.log(waku2_h + "px")
-      document.getElementById("haikeiGazo").style.height = waku2_h
-      document.getElementById("waku1").style.height = waku2_h
-
-      console.log("get done:" + result)
-    })
-    .fail(function (jqXHR, textStatus, errorThrown) {
-      // 通信失敗時の処理
-      alert("ファイルの取得に失敗しました。")
-      console.log("ajax通信に失敗しました")
-      console.log("jqXHR          : " + jqXHR.status) // HTTPステータスが取得
-      console.log("textStatus     : " + textStatus) // タイムアウト、パースエラー
-      console.log("errorThrown    : " + errorThrown.message) // 例外情報
-      console.log("URL            : " + END_POINT)
-    })
-    .always((data) => {
-      //常にやる処理
+      haikeiDIV.style.height = waku2_h + "px"
+      document.getElementById("waku1").style.height = waku2_h + "px"
+    } catch (error) {
+      console.log(error)
+    } finally {
       //loadingの非表示
       loader.classList.add("loaded")
-    })
+    }
+  }
+  accessAsync()
 }
