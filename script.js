@@ -1,8 +1,5 @@
-// axiosをインポートする
-//import axios from "axios"
 //GAS WebアプリのURL
 const END_POINT = "https://script.google.com/macros/s/AKfycbynkkPB9flNyDe3D1R7vYpvUFpFeWCLg-kkZggIHw02N-pzVNBXdIRRbPchUvpv-EhT/exec" //sample_spreadsheet_GAS
-//const END_POINT = "https://script.google.com/macros/s/AKfycbwLe8Fjc2N803r1j9rwfbMRMVkHn-2YP76geWawVPReNeSIvKBom1Mq8Gsn2Q6YiYPa-Q/exec" //honban
 //読み書きするスプレッドシートの指定
 const param_sheetNAME = "踏み台シート"
 document.getElementById("kousinButton").addEventListener("click", getCharaMemoToGAS, false)
